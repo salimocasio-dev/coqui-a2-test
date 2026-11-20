@@ -1,0 +1,97 @@
+name: my_cool_game
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 26.3.3+5
+
+environment:
+  sdk: ">=3.4.4 <4.0.0"
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+
+  bonfire: ^3.16.1
+  cupertino_icons: ^1.0.8
+  flame: 1.32.0
+  flame_audio: 2.11.1
+  flutter_riverpod: ^3.3.1
+  gap: ^3.0.1
+  logger: ^2.6.1
+  lottie: ^3.3.0
+  material_design_icons_flutter: ^7.0.7296
+  mockito: ^5.4.4
+  toastification: ^3.0.3
+  universal_platform: ^1.1.0
+  window_manager: ^0.5.1
+  package_info_plus: ^9.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^6.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: adventure
+      fonts:
+        - asset: fonts/adventure.otf
+
+  assets:
+    - assets/audio/
+    - assets/images/
+    - assets/lotties/
+    - assets/images/alchemist/
+    - assets/images/background/
+    - assets/images/blacksmith/
+    - assets/images/bonfire/
+    - assets/images/chest/
+    - assets/images/coin/
+    - assets/images/dwarf_warrior/idle/
+    - assets/images/dwarf_warrior/walk/
+    - assets/images/dwarf_warrior/attack/
+    - assets/images/dwarf_warrior/hurt/
+    - assets/images/dwarf_warrior/death/
+    - assets/images/gem/
+    - assets/images/headless_horseman/idle/
+    - assets/images/headless_horseman/run/
+    - assets/images/headless_horseman/attack/
+    - assets/images/headless_horseman/hurt/
+    - assets/images/headless_horseman/death/
+    - assets/images/input/
+    - assets/images/item/
+    - assets/images/lizardman/idle/
+    - assets/images/lizardman/walk/
+    - assets/images/lizardman/attack/
+    - assets/images/lizardman/hurt/
+    - assets/images/lizardman/death/
+    - assets/images/minotaur/idle/
+    - assets/images/minotaur/walk/
+    - assets/images/minotaur/attack_one/
+    - assets/images/minotaur/attack_two/
+    - assets/images/minotaur/hurt/
+    - assets/images/minotaur/death/
+    - assets/images/plant/
+    - assets/images/potion/
+    - assets/images/world_object/
+    - shorebird.yaml

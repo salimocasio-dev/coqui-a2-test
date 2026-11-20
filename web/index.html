@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="my_cool_game">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>Coquí A2 test</title>
+  <link rel="manifest" href="manifest.json">
+
+  <script>
+  // Coquí A2 test: the browser's own voice and speech recognition, called from Dart.
+  (function () {
+    function pickVoice() {
+      var vs = window.speechSynthesis ? speechSynthesis.getVoices() : [];
+      var pref = ['es-US', 'es-PR', 'es-MX', 'es-419', 'es-ES'];
+      for (var i = 0; i < pref.length; i++) {
+        for (var j = 0; j < vs.length; j++) {
+          if ((vs[j].lang || '').replace('_', '-') === pref[i]) return vs[j];
+        }
+      }
+      for (var k = 0; k < vs.length; k++) {
+        if ((vs[k].lang || '').toLowerCase().indexOf('es') === 0) return vs[k];
+      }
+      return null;
+    }
+    if (window.speechSynthesis) speechSynthesis.onvoiceschanged = function () {};
+    window.coquiSpeak = function (text) {
+      return new Promise(function (resolve) {
+        if (!window.speechSynthesis) return resolve(null);
+        var done = false;
+        function finish() { if (!done) { done = true; resolve(null); } }
+        try {
+          speechSynthesis.cancel();
+          var u = new SpeechSynthesisUtterance(text);
+          var v = pickVoice();
+          if (v) u.voice = v;
+          u.lang = v ? v.lang : 'es-US';
+          u.rate = 0.85;
+          u.onend = finish;
+          u.onerror = finish;
+          speechSynthesis.speak(u);
+          setTimeout(finish, 12000);
+        } catch (e) { finish(); }
+      });
+    };
+    window.coquiListen = function () {
+      return new Promise(function (resolve) {
+        var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SR) return resolve('__nosr__');
+        var done = false;
+        function finish(v) { if (!done) { done = true; resolve(v); } }
+        try {
+          if (window.speechSynthesis) speechSynthesis.cancel();
+          var r = new SR();
+          r.lang = 'es-US';
+          r.interimResults = false;
+          r.maxAlternatives = 5;
+          r.continuous = false;
+          r.onresult = function (e) {
+            var alts = [];
+            for (var i = 0; i < e.results[0].length; i++) alts.push(e.results[0][i].transcript);
+            finish(alts.join('|'));
+          };
+          r.onerror = function (e) { finish('__err__:' + e.error); };
+          r.onend = function () { finish(''); };
+          r.start();
+          setTimeout(function () { try { r.stop(); } catch (e) {} }, 9000);
+        } catch (e) { finish('__err__:' + e); }
+      });
+    };
+  })();
+  </script>
+</head>
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
