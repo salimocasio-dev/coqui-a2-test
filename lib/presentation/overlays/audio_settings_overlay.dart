@@ -61,7 +61,7 @@ class AudioSettingsOverlay extends ConsumerWidget {
                 style: TextStyle(color: Colors.white),
               ),
               subtitle: Text(
-                'For ${Platform.operatingSystem}',
+                'Coquí A2 test',
                 style: TextStyle(color: Colors.white),
               ),
             ),
