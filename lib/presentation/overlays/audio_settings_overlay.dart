@@ -1,9 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:my_cool_game/domain/core/providers.dart';
 import 'package:my_cool_game/main.dart';
 import 'package:my_cool_game/presentation/components/volume_slider.dart';
@@ -55,7 +52,7 @@ class AudioSettingsOverlay extends ConsumerWidget {
             Spacer(),
             ListTile(
               leading: Icon(
-                Platform.isMacOS ? MdiIcons.apple : MdiIcons.android,
+                Icons.info_outline,
                 size: 25,
                 color: Colors.white,
               ),
