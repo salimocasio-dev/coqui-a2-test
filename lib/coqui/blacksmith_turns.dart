@@ -4,6 +4,7 @@ import 'speak_turn.dart';
 const blacksmithTurns = <SpokenTurn>[
         SpokenTurn(
           line: 'Hola otra vez, muchacho. ¿Qué necesitas?',
+          ask: '¿Qué necesitas?',
           options: [
             SpokenOption(
               text: 'Necesito carbón.',
@@ -19,6 +20,7 @@ const blacksmithTurns = <SpokenTurn>[
         ),
         SpokenTurn(
           line: '¿Carbón? Bueno. ¿Y quién te mandó?',
+          ask: '¿Quién te mandó?',
           options: [
             SpokenOption(
               text: 'Tu esposa.',

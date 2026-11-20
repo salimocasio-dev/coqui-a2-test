@@ -34,9 +34,12 @@ class SpokenOption {
 }
 
 class SpokenTurn {
-  const SpokenTurn({required this.line, required this.options});
+  const SpokenTurn({required this.line, required this.options, this.ask});
 
   final String line;
+
+  /// The question alone, repeated after "¿Cómo?". Defaults to [line].
+  final String? ask;
   final List<SpokenOption> options;
 }
 
@@ -168,7 +171,9 @@ class _SpeakTurnDialogState extends State<SpeakTurnDialog> {
             ? 'Permite el micrófono para hablar.'
             : (code.contains('no-speech') ? '' : 'Error: $code');
       });
-      if (!code.contains('not-allowed')) await _say('¿Cómo?');
+      if (!code.contains('not-allowed')) {
+        await _say('¿Cómo? ${_current.ask ?? _current.line}');
+      }
       return;
     }
 
@@ -178,7 +183,7 @@ class _SpeakTurnDialogState extends State<SpeakTurnDialog> {
 
   Future<void> _answer(SpokenOption? option) async {
     if (option == null) {
-      await _say('¿Cómo?');
+      await _say('¿Cómo? ${_current.ask ?? _current.line}');
       return;
     }
     if (!option.right) {
