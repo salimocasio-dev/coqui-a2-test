@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
         child: ToastificationWrapper(
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'My Cool Game',
+            title: 'Coquí A2 test',
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(
                 seedColor: Colors.deepPurple,

@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_cool_game/coqui/blacksmith_turns.dart';
 import 'package:my_cool_game/coqui/speak_turn.dart';
 import 'package:my_cool_game/domain/core/enums/game_progress.dart';
 import 'package:my_cool_game/domain/core/enums/joystick_actions.dart';
@@ -305,39 +306,8 @@ class DwarfWarrior extends PlatformPlayer
       context,
       name: 'El herrero',
       portrait: Globals.imageAssets.blacksmith,
-      turns: const [
-        SpokenTurn(
-          line: 'Hola otra vez, muchacho. ¿Qué necesitas?',
-          options: [
-            SpokenOption(
-              text: 'Necesito carbón.',
-              keys: ['carbon', 'carbono'],
-              right: true,
-            ),
-            SpokenOption(
-              text: 'Necesito una espada.',
-              keys: ['espada', 'espadas'],
-              reply: '¿Una espada? Hoy no tengo espadas. ¿Qué más necesitas?',
-            ),
-          ],
-        ),
-        SpokenTurn(
-          line: '¿Carbón? Bueno. ¿Y quién te mandó?',
-          options: [
-            SpokenOption(
-              text: 'Tu esposa.',
-              keys: ['esposa', 'mujer', 'alquimista', 'senora'],
-              right: true,
-            ),
-            SpokenOption(
-              text: 'El rey.',
-              keys: ['rey'],
-              reply: '¿El rey? Yo no conozco al rey. ¿Quién te mandó?',
-            ),
-          ],
-        ),
-      ],
-      closing: 'Ah, mi esposa. Bueno, aquí tienes el carbón.',
+      turns: blacksmithTurns,
+      closing: blacksmithClosing,
     );
     gameRef.resumeEngine();
     if (!ok) return;
